@@ -1,4 +1,4 @@
-# 📚 Biblioteca Distribuidora com Simulador de Transporte [^1]
+# 📚 Biblioteca Distribuidora com Simulador de Transporte. [^1]
 
 ![Biblioteca-Distribuidora](https://github.com/user-attachments/assets/26302655-8a1c-4af5-b4b3-94eb13184251)
 
@@ -49,6 +49,7 @@ Tipo de veículo
 Clique em Calcular e veja os custos estimados em três moedas.
 
 📂 Estrutura do Projeto
+
 biblioteca-distribuidora/
 ├── index.html
 ├── style.css
@@ -62,7 +63,7 @@ Banco de dados local ou online para persistência dos livros.
 
 Filtros de busca e ordenação de livros.
 
-🤝 Contribuições
-Contribuições são bem-vindas! Sinta-se livre para abrir issues ou pull requests.
+🤝 Contribuições:
+São bem-vindas! Sinta-se livre para abrir issues ou pull requests.
 
-[1^]: Sempre estudando para me manter atualizada!
+[1^] Sempre estudando para me manter atualizada para atuar no mercado de trabalho!
