@@ -1,8 +1,8 @@
-# 📚 Biblioteca Distribuidora com Simulador de Transporte. [^1]
+# 📚 Biblioteca Distribuidora com Simulador de Transporte.
 
 ![Biblioteca-Distribuidora](https://github.com/user-attachments/assets/26302655-8a1c-4af5-b4b3-94eb13184251)
 
-Este projeto simula uma distribuidora de livros com interface gráfica amigável, permitindo adicionar livros dinamicamente e calcular os custos de transporte conforme o tipo de carga, distância e veículo. Os resultados são exibidos em Reais (R$), Dólares (US$) e Euros (€) com base em taxas de câmbio simuladas.
+Este projeto simula uma distribuidora de livros com interface gráfica amigável, permitindo adicionar livros dinamicamente e calcular os custos de transporte conforme o tipo de carga, distância e veículo. Os resultados são exibidos em Reais (R$), Dólares (US$) e Euros (€) com base em taxas de câmbio simuladas [^1].
 
 ---
 
@@ -66,4 +66,4 @@ Filtros de busca e ordenação de livros.
 🤝 Contribuições:
 São bem-vindas! Sinta-se livre para abrir issues ou pull requests.
 
-[1^] Sempre estudando para me manter atualizada para atuar no mercado de trabalho!
+[^1]: Sempre estudando para me manter atualizada para atuar no mercado de trabalho!
