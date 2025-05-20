@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biblioteca Distribuidora</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f4f4f4;
+      border-radius: 8px;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    form, .currency-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+    button {
+      padding: 10px;
+      background-color: #0a77ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      padding: 10px;
+      background: white;
+      margin-bottom: 10px;
+      border-left: 5px solid #0a77ff;
+    }
+    #resultado {
+      padding: 10px;
+      background: #dff0d8;
+      border-left: 5px solid green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Distribuidora de Livros</h1>
+
+  <form id="formLivro">
+    <label>Título do Livro:
+      <input type="text" id="titulo" required>
+    </label>
+    <label>Autor:
+      <input type="text" id="autor" required>
+    </label>
+    <label>Quantidade:
+      <input type="number" id="quantidade" required>
+    </label>
+    <button type="submit">Adicionar Livro</button>
+  </form>
+
+  <h2>Lista de Livros</h2>
+  <ul id="listaLivros"></ul>
+
+  <h2>Simulador de Custo de Transporte</h2>
+  <form id="simulador">
+    <label>Tipo de Veículo:
+      <select id="veiculo">
+        <option value="van">Van</option>
+        <option value="caminhao">Caminhão</option>
+        <option value="carreta">Carreta</option>
+      </select>
+    </label>
+    <label>Distância (KM):
+      <input type="number" id="distancia" required>
+    </label>
+    <label>Moeda:
+      <select id="moeda">
+        <option value="BRL">R$ (Real)</option>
+        <option value="USD">US$ (Dólar)</option>
+        <option value="EUR">€ (Euro)</option>
+      </select>
+    </label>
+    <button type="submit">Calcular Custo</button>
+  </form>
+
+  <div id="resultado"></div>
+
+  <script>
+    const formLivro = document.getElementById('formLivro');
+    const listaLivros = document.getElementById('listaLivros');
+    const simulador = document.getElementById('simulador');
+    const resultado = document.getElementById('resultado');
+
+    // Carregar livros do localStorage ao iniciar
+    window.onload = () => {
+      const livros = JSON.parse(localStorage.getItem('livros')) || [];
+      livros.forEach(livro => adicionarLivroNaLista(livro));
+    };
+
+    formLivro.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const titulo = document.getElementById('titulo').value;
+      const autor = document.getElementById('autor').value;
+      const quantidade = document.getElementById('quantidade').value;
+      const livro = { titulo, autor, quantidade };
+
+      adicionarLivroNaLista(livro);
+
+      const livros = JSON.parse(localStorage.getItem('livros')) || [];
+      livros.push(livro);
+      localStorage.setItem('livros', JSON.stringify(livros));
+
+      formLivro.reset();
+    });
+
+    function adicionarLivroNaLista(livro) {
+      const li = document.createElement('li');
+      li.textContent = `"${livro.titulo}" de ${livro.autor} - Quantidade: ${livro.quantidade}`;
+      listaLivros.appendChild(li);
+    }
+
+    simulador.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const veiculo = document.getElementById('veiculo').value;
+      const distancia = parseFloat(document.getElementById('distancia').value);
+      const moeda = document.getElementById('moeda').value;
+
+      let custoBase;
+      switch (veiculo) {
+        case 'van':
+          custoBase = 1.2;
+          break;
+        case 'caminhao':
+          custoBase = 2.0;
+          break;
+        case 'carreta':
+          custoBase = 3.5;
+          break;
+      }
+
+      let simbolo = 'R$';
+      let conversao = 1;
+      if (moeda === 'USD') {
+        conversao = 0.20; // 1 real = 0.20 dólar (simulado)
+        simbolo = 'US$';
+      } else if (moeda === 'EUR') {
+        conversao = 0.18; // 1 real = 0.18 euro (simulado)
+        simbolo = '€';
+      }
+
+      const custoFinal = (distancia * custoBase * conversao).toFixed(2);
+      resultado.innerText = `Custo estimado do transporte: ${simbolo} ${custoFinal}`;
+    });
+  </script>
+</body>
+</html>
